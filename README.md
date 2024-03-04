@@ -1,5 +1,5 @@
-# astria_rollup (Dusk-3)
-<img src="https://github.com/hakandemirdev/astria_rollup/blob/960ad0b8f4f39da15ed1ea5d2ae3653538699dcf/dusk3logo.jpeg" width="auto">
+# Fairblock Testnet (Validator Setup)
+<img src="https://github.com/hakandemirdev/Fairblock_Testnet/blob/e4971c7085f4b66a19c36fb50bffb54ecebdb81e/fairblocklogo.png" width="auto">
 
 Öncelikle işletim sistemimizi güncelliyoruz.Ubuntu 22.04.3 LTS üzerine kurdum.
 ```
