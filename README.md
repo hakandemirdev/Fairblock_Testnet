@@ -3,46 +3,39 @@
 
 Öncelikle işletim sistemimizi güncelliyoruz.Ubuntu 22.04.3 LTS üzerine kurdum.
 ```
-sudo apt-get update  && sudo apt-get upgrade
+sudo apt update && sudo apt upgrade -y
 ```
-Cargo yüklüyoruz.
+Temel paketleri yüklüyoruz.
 ```
-apt install cargo
+sudo apt install git curl tar wget libssl-dev jq build-essential gcc make
 ```
-Rust Yüklüyoruz
+add-apt-repository paketini Yüklüyoruz
 ```
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-source "$HOME/.cargo/env"
-rustc –version
+sudo apt update
+sudo apt install software-properties-common
+sudo apt update
 ```
-Git Yüklüyoruz
+Go Yüklüyoruz
 ```
-apt install git
+sudo add-apt-repository ppa:longsleep/golang-backports
+sudo apt update
+sudo apt install golang-go
 ```
-Astria dev-cluster reposunu klonluyoruz.
+Gerekli ayarları yapıyoruz.
 ```
-git clone --branch dusk-3 https://github.com/astriaorg/dev-cluster.git
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.profile
+source $HOME/.profile
 ```
-En son sürüm astria cli kuruyoruz
+Go versiyonu kontrol ediyoruz, v1.21 veya üzeri olmalı.
 ```
-cargo install astria-cli --git=https://github.com/astriaorg/astria --tag=cli-v0.3.1 --locked
+go version
 ```
-Docker Kurulumu
+Fairblock node'un eski bir versiyonu kurulu ise aşağıdaki komutlarla kaldırıyoruz ve güncel repoyu indiriyoruz.
 ```
-sudo apt-get update
-sudo apt-get install ca-certificates curl gnupg
-sudo install -m 0755 -d /etc/apt/keyrings
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-sudo chmod a+r /etc/apt/keyrings/docker.gpg
-
-echo \
-"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-$(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
-sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-
-sudo apt-get update
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-sudo docker run hello-world
+cd $HOME
+rm -rf fairyring
+git clone https://github.com/Fairblock/fairyring.git
+cd fairyring
 ```
 Kubectl Kurulumu
 ```
